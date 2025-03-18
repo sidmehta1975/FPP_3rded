@@ -1,0 +1,142 @@
+---
+title: "2.Time Series Graphics"
+format: html
+editor: visual
+---
+
+## Chapter 2 Time-Series Graphics, 18th march 2025
+
+### Load libraries
+
+```{r echo=FALSE, eval=TRUE, warning=FALSE}
+
+library(fpp3)
+
+```
+
+### Chapter 2.2
+
+#### Ansett airlines data
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+str(ansett)
+
+```
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+ansett
+
+
+```
+
+Dataset containing 7407 rows and 4 coumns, with an index that captures weekly data. The unique key is captured by the unique combination of "Airports-Class" and the dataset contains 30 such unique keys or time-series.
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+melsyd_economy <- ansett |>
+  filter(Airports == "MEL-SYD", Class == "Economy") |>
+  mutate(Passengers = Passengers/1000)
+
+autoplot(melsyd_economy, Passengers) +
+  labs(title = "Ansett airlines economy class",
+       subtitle = "Melbourne-Sydney",
+       y = "Passengers ('000)")
+```
+
+Observations:
+
+-   Seasonality within the year is captured across years
+
+-   Two unsual dips in the ts: 1) 1989, whyen passenger count was zero; 2) 1992, passenger count at 15K
+
+-   Data tends to trend upwards in th 1991-92 period
+
+-   Perhaps, there is a downward trend from 1988-90?
+
+### Chapter 2.3
+
+#### Trend: 
+
+-   Long-term direction of the time-series. It may slope upwards or downwards. The trend is the ts can change over-time. It does not need to be uni-directional. This is called "changing direction" in the ts.
+
+#### Seasonality: 
+
+-   Repetetive patterns in the ts at a known frequency is called "seasonality". Example - day-of-week affect on traffic volume, monthly-sales patterns for commodities such as umbrellas.
+
+#### Cycle: 
+
+-   Repetetive patterns in data but not at known frequency is called "cycle". Example - The Chemical industry goes through cycles of boom and bust. This is inevitable, the only thing that changes and is perhasp not predictable is the gap between these cycles. The duration of these repeated pattern is atleast 2-years.
+
+#### Cycle vs Seasonality?
+
+-   Seasonality is related to the calendar features ie the patterns tends to repat every year
+
+    -   Cycles occur at a frequency greater than 2-years
+
+-   magnitude of cycles tends to be greater than that of seasonal pattern
+
+### Chapter 2.4
+
+#### Seasonal plot
+
+```{r}
+
+{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+vic_elec
+```
+
+-   Victoria electricity consumption data.
+
+-   52608 rows and 5 columns. Indexed every 30 minutes.
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+vic_elec |> gg_season(Demand, period = "day") +
+  theme(legend.position = "none") +
+  labs(y="MWh", title="Electricity demand: Victoria")
+
+```
+
+Observation:
+
+-   Seasonal pattern recorded at a hour-of-day frequency
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+vic_elec |> gg_season(Demand, period = "week") +
+  theme(legend.position = "none") +
+  labs(y="MWh", title="Electricity demand: Victoria")
+```
+
+-   Seasonality at day-of-week (and hour-of-day) frequency
+
+-   The data repeats the hour-of-day pattern for all weekdays
+
+-   The electricity-consumption tends to be the same theough the week ad dips slighly for Saturday & Sunday!
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+vic_elec |> gg_season(Demand, period = "year") +
+  labs(y="MWh", title="Electricity demand: Victoria")
+
+```
+
+Observation
+
+-   Zooming out to look at the pattern on a yearly-basis.
+
+-   The fact that the data-patterns overlap across years suggests that there is not much of a trend to pick-up!
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+autoplot(vic_elec,Demand) +
+  labs(y="MWh", title="Electricity demand: Victoria")
+
+```
+
+Observation:
+
+-   Yes, it's true, that there is not much of a trend in this dataset!
