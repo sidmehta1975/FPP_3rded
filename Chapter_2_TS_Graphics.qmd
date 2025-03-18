@@ -11,6 +11,7 @@ editor: visual
 ```{r echo=FALSE, eval=TRUE, warning=FALSE}
 
 library(fpp3)
+library(fpp2)
 
 ```
 
@@ -57,15 +58,15 @@ Observations:
 
 ### Chapter 2.3
 
-#### Trend: 
+#### Trend:
 
 -   Long-term direction of the time-series. It may slope upwards or downwards. The trend is the ts can change over-time. It does not need to be uni-directional. This is called "changing direction" in the ts.
 
-#### Seasonality: 
+#### Seasonality:
 
 -   Repetetive patterns in the ts at a known frequency is called "seasonality". Example - day-of-week affect on traffic volume, monthly-sales patterns for commodities such as umbrellas.
 
-#### Cycle: 
+#### Cycle:
 
 -   Repetetive patterns in data but not at known frequency is called "cycle". Example - The Chemical industry goes through cycles of boom and bust. This is inevitable, the only thing that changes and is perhasp not predictable is the gap between these cycles. The duration of these repeated pattern is atleast 2-years.
 
@@ -138,3 +139,103 @@ autoplot(vic_elec,Demand) +
 Observation:
 
 -   Yes, it's true, that there is not much of a trend in this dataset!
+
+### Chapter 2.5
+
+#### Turning data into a tsibble
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+a10_tsibble <- as_tsibble(a10, 
+                          index = "Month",
+                          key=c("Year", "Month"))
+
+a10_tsibble <- a10_tsibble |>
+  rename(Cost=value)
+  
+a10_tsibble
+
+```
+
+-   The original ts data had monthly-data. since that was the only time dimension, that becomes the index.
+
+-   Key is the other dimension in a tsibble. Key(/s) reflect the subjects for whom the time-series is recorded. In this ts there is no information provided for the key.
+
+-   Cost is the measure that is recorded in the time-series. this reflects the values of the "measure" at monthly (index) time periods.
+
+#### Seasonal sub-series plot
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+a10_tsibble |>
+  gg_subseries(Cost)+
+  labs(
+    y = "$ (millions)",
+    title = "Australian antidiabetic drug sales"
+  )
+```
+
+Observations:
+
+-   This is a faceted plot for each season in the data. Since the data was re\[ported at a monthly frequency, seasons were the months.
+
+-   The chart reveals not just the seasonal trend but also the change over time
+
+-   Its clear from the above charts that Jan tends to be the month of highest cost. The blue-lines reflect the average over time.
+
+#### Aus holiday tourism
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+holidays <- tourism |>
+  filter(Purpose == "Holiday") |>
+  group_by(State) |>
+  summarise(Trips = sum(Trips))
+
+holidays
+```
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
+
+autoplot(holidays, Trips)+
+  labs(y = "Overnight trips ('000)",
+       title = "Australian domestic holidays")
+
+```
+
+Observations:
+
+-   "autoplot" gives all the series in the data. In our case we had 8 keys (States) recording tourist volume at a quarterly period (index)
+
+-    NSW has the highest volume; Victoria has biggeest variance; Western-Australia has a jump in its trend in 2015!
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE, fig.width=8, fig.height=10}
+
+holidays |>
+  gg_subseries(Trips)+
+  labs(
+    y = "Overnight trips ('000)",
+    title = "Australian domestic holidays"
+  )
+```
+
+Observations:
+
+-   In general, tourist volume seems to be up across all states in 2015
+
+-   Th blue line depicts the quaretrly-seasonality across states.
+
+    -   Q1 is most popular for Victoria, Tasmania, NSW. South Australia
+
+    -   Q3 is most popular in Northern Territories and Queensland
+
+    -   Western Australia and ACT have no seasonal variation!
+
+```{r eval=TRUE, warning=FALSE, echo=FALSE, fig.width=8, fig.height=10}
+
+gg_season(holidays, Trips) +
+  labs(y = "Overnight trips ('000)",
+       title = "Australian domestic holidays")
+```
+
+Continue from Chapter 2.7 Lag Plots

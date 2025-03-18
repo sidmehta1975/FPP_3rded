@@ -92,6 +92,30 @@ ul.task-list li input[type="checkbox"] {
 ✖ tsibble::setdiff()   masks base::setdiff()
 ✖ tsibble::union()     masks base::union()</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ────────────────────────────────────────────── fpp2 2.5 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ forecast  8.23.0     ✔ expsmooth 2.3   
+✔ fma       2.5        </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'fpp2'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:fpp3':
+
+    insurance</code></pre>
+</div>
 </div>
 </section>
 <section id="chapter-2.2" class="level3">
@@ -297,6 +321,118 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Yes, it’s true, that there is not much of a trend in this dataset!</li>
 </ul>
+</section>
+</section>
+<section id="chapter-2.5" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-2.5">Chapter 2.5</h3>
+<section id="turning-data-into-a-tsibble" class="level4">
+<h4 class="anchored" data-anchor-id="turning-data-into-a-tsibble">Turning data into a tsibble</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 204 x 2 [1M]
+       index  Cost
+       &lt;mth&gt; &lt;dbl&gt;
+ 1  1991 Jul  3.53
+ 2  1991 Aug  3.18
+ 3 1991 Sept  3.25
+ 4  1991 Oct  3.61
+ 5  1991 Nov  3.57
+ 6  1991 Dec  4.31
+ 7  1992 Jan  5.09
+ 8  1992 Feb  2.81
+ 9  1992 Mar  2.99
+10  1992 Apr  3.20
+# ℹ 194 more rows</code></pre>
+</div>
+</div>
+<ul>
+<li><p>The original ts data had monthly-data. since that was the only time dimension, that becomes the index.</p></li>
+<li><p>Key is the other dimension in a tsibble. Key(/s) reflect the subjects for whom the time-series is recorded. In this ts there is no information provided for the key.</p></li>
+<li><p>Cost is the measure that is recorded in the time-series. this reflects the values of the “measure” at monthly (index) time periods.</p></li>
+</ul>
+</section>
+<section id="seasonal-sub-series-plot" class="level4">
+<h4 class="anchored" data-anchor-id="seasonal-sub-series-plot">Seasonal sub-series plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li><p>This is a faceted plot for each season in the data. Since the data was re[ported at a monthly frequency, seasons were the months.</p></li>
+<li><p>The chart reveals not just the seasonal trend but also the change over time</p></li>
+<li><p>Its clear from the above charts that Jan tends to be the month of highest cost. The blue-lines reflect the average over time.</p></li>
+</ul>
+</section>
+<section id="aus-holiday-tourism" class="level4">
+<h4 class="anchored" data-anchor-id="aus-holiday-tourism">Aus holiday tourism</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 640 x 3 [1Q]
+# Key:       State [8]
+   State Quarter Trips
+   &lt;chr&gt;   &lt;qtr&gt; &lt;dbl&gt;
+ 1 ACT   1998 Q1  196.
+ 2 ACT   1998 Q2  127.
+ 3 ACT   1998 Q3  111.
+ 4 ACT   1998 Q4  170.
+ 5 ACT   1999 Q1  108.
+ 6 ACT   1999 Q2  125.
+ 7 ACT   1999 Q3  178.
+ 8 ACT   1999 Q4  218.
+ 9 ACT   2000 Q1  158.
+10 ACT   2000 Q2  155.
+# ℹ 630 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li><p>“autoplot” gives all the series in the data. In our case we had 8 keys (States) recording tourist volume at a quarterly period (index)</p></li>
+<li><p>NSW has the highest volume; Victoria has biggeest variance; Western-Australia has a jump in its trend in 2015!</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li><p>In general, tourist volume seems to be up across all states in 2015</p></li>
+<li><p>Th blue line depicts the quaretrly-seasonality across states.</p>
+<ul>
+<li><p>Q1 is most popular for Victoria, Tasmania, NSW. South Australia</p></li>
+<li><p>Q3 is most popular in Northern Territories and Queensland</p></li>
+<li><p>Western Australia and ACT have no seasonal variation!</p></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Continue from Chapter 2.7 Lag Plots</p>
 </section>
 </section>
 </section>
