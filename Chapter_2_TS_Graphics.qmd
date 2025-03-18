@@ -81,9 +81,7 @@ Observations:
 
 #### Seasonal plot
 
-```{r}
-
-{r eval=TRUE, warning=FALSE, echo=FALSE}
+```{r eval=TRUE, warning=FALSE, echo=FALSE}
 
 vic_elec
 ```
