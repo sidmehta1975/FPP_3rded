@@ -1,6 +1,12 @@
 ---
 title: "2.Time Series Graphics"
-format: html
+format: 
+  html:
+    fig-width: 8
+    fig-height: 10
+execute: 
+  echo: false
+  warning: false
 editor: visual
 ---
 
@@ -140,7 +146,7 @@ Observation:
 
 -   Yes, it's true, that there is not much of a trend in this dataset!
 
-### Chapter 2.5
+### Chapter 2.5: Seasonality
 
 #### Turning data into a tsibble
 
@@ -207,7 +213,7 @@ Observations:
 
 -   "autoplot" gives all the series in the data. In our case we had 8 keys (States) recording tourist volume at a quarterly period (index)
 
--    NSW has the highest volume; Victoria has biggeest variance; Western-Australia has a jump in its trend in 2015!
+-   NSW has the highest volume; Victoria has biggeest variance; Western-Australia has a jump in its trend in 2015!
 
 ```{r eval=TRUE, warning=FALSE, echo=FALSE, fig.width=8, fig.height=10}
 
@@ -238,4 +244,354 @@ gg_season(holidays, Trips) +
        title = "Australian domestic holidays")
 ```
 
-Continue from Chapter 2.7 Lag Plots
+### Chapter 2.7: Lags
+
+```{r}
+
+recent_production <- aus_production |>
+  filter(year(Quarter) >= 2000)
+
+recent_production |>
+  gg_lag(Beer, geom = "point") +
+  labs(x = "lag(Beer, k)")
+```
+
+Observations:
+
+-   Dots indicate the quarter on the vertical axis.
+
+-   We are plotting yt vs yt-k, k=1..9
+
+-   So for the lag-1 facet, we have yellow on the extreme left suggesting that's a Q4 value vs a Q3 value on the x-axis
+
+-   We also notice that lag-4 and lag-8 line up against a line. This suggests the seasonal nature of the data. Clear indication of quarterly seasonality.
+
+### Chapter 2.8: Autocorelation
+
+```{r}
+
+recent_production |> ACF(Beer, lag_max = 9)
+
+```
+
+Theory:
+
+-   autocorelation: correlation between value of the series that are apart by k periods.
+
+-   r1 = correation between value that are distanced by k=1 time period
+
+-   In general rk = numerator/denomintaor
+
+    -   numerator = sum of product terms such that product is of the form (y_t - y_bar)(y_t-k -y_bar)
+
+        -   the terms summed over the entire time-series T
+
+        -   the starting point for the summation is t=k
+
+        -   so if the time-series has 10 terms ie T=10
+
+        -   we will sum the product of the form in the first bullet for all ks from 2..10
+
+        -   so the numerator will have (10-2)+1= product terms that will be summed
+
+    -   denominator = variance of the time series ie sum t=1..T, terms of the form (y_t - y_bar)\^2
+
+#### Correlogram
+
+```{r}
+
+recent_production |> ACF(Beer) |> autoplot()+
+  labs(title = "Australian beer production")
+
+```
+
+Observations:
+
+-   autocorrelations are high and positive when lags are multiples of 4 quarters.
+
+    -   This suggests that there is strong seasonal pattern on a quarterly
+
+-   autocorelation is high and negative for lags that are at periods 2,6,10,14...
+
+    -   This suggests that values are at trough and peaks at these intervals
+
+-   The blue line gives the significnat level for correlations
+
+#### Trend & Seasonality
+
+```{r}
+
+a10_tsibble |> ACF(Cost, lag_max = 48) |>
+  autoplot()+
+  labs(title = "ACF plot for Australian antidiabetic drug sales")
+
+```
+
+Observations:
+
+-   Since the lag-1 correlation is high, the data has strong trend.
+
+-   We also notice the highest spike at a 12, 24, 26..time interval which suggests stronong correlation with yearly values which is essentially the trend!
+
+-   When the data has only seasonality, the lag-1 will not be this strong.
+
+    -   the lag at the seasonal period will have the strongest correlation.
+
+-   For data that has both trend and seasoanlity, we will likely get charts like th one above.
+
+#### White-noise
+
+```{r}
+
+set.seed(30)
+y <- tsibble(sample = 1:50, wn = rnorm(50), index = sample)
+
+y |> ACF(wn) |> autoplot() + labs(title = "White noise", y = "")
+```
+
+Observations:
+
+-   The significant bands are at +/- 1.96/sqrt(T) distance from the mean. Thsi gives the 95% confidence-interval for the distribution.
+
+### Exercises:
+
+#### 1.?Bricks
+
+```{r}
+
+aus_production
+
+```
+
+-   Time interval for the series is quarterly
+
+-   autoplot for the Bricks series
+
+```{r}
+
+aus_production |> autoplot(Bricks)
+
+```
+
+-   Adding labels for the axis and a title
+
+```{r}
+
+aus_production |> autoplot(Bricks) +
+  labs(title = "Brick production in Australia")+
+  scale_y_continuous(name="Bricks in millions")
+```
+
+#### 2. Gafa-stock: 
+
+Find the days that correspond to the highest price for each of the stocks in the dataset
+
+```{r}
+
+gafa_stock
+
+
+```
+
+Peak closing price for each stock symbol:
+
+```{r}
+
+gafa_stock |>
+  group_by(Symbol) |>
+  filter(Close==max(Close))
+
+```
+
+![](images/clipboard-9133593.png)
+
+#### 6. "aus_arrivals" data run autoplot(), gg_subseries(), gg_season()
+
+```{r}
+
+aus_arrivals
+```
+
+```{r}
+aus_arrivals |> autoplot(Arrivals/1000)+
+  labs(title = "Tourists in asutralia from different countries")+
+  scale_y_continuous(name="Tourists in 000s")
+```
+
+Observation:
+
+-   The Japanese tourists seem to be trending dwonwards from 1996 onwards
+
+```{r}
+
+aus_arrivals |> gg_subseries(Arrivals/1000)+
+  labs(title = "Tourists in asutralia from different countries")+
+  scale_y_continuous(name="Tourists in 000s")
+```
+
+```{r}
+
+aus_arrivals |> gg_season(Arrivals/1000)+
+  labs(title = "Tourists in asutralia from different countries")+
+  scale_y_continuous(name="Tourists in 000s")
+```
+
+Observation:
+
+-   The plot suggest the clear shift in trend across years. For All countries except Japan, the recent years have higher values
+
+-   The chart also clearly gives us the seasonal pattern and how this has changed over time. Example for the UK tourists the season pattern for highs in Q1 and Q4 ar more pronounced than they were back in the 1980s
+
+#### 10. aus_livestock
+
+```{r}
+
+aus_livestock
+
+```
+
+```{r}
+aus_livestock |> count(Animal, sort=TRUE)
+
+```
+
+```{r}
+aus_livestock |> count(State, sort=TRUE)
+```
+
+```{r}
+aus_livestock |>
+  filter(State== "Victoria", Animal== "Pigs") |>
+  filter_index("1972-07" ~"2018-12") |>
+  autoplot()+
+  labs(title = "Voume of pigs slaufghtered in Victoria between Jul 1972 to Dec 2018")+
+  scale_y_continuous(name="Number of Pigs")
+```
+
+Observations:
+
+-   The data appears to have cycles. Between Jan 1990 and Jan 2010, for the twenty-year period we see a trend that grows for 10 years and then falls for the next 10 years.
+
+-   Though the pattern did not quite repeat fro the period 1980-1990, in which case the upward and dwonward trend persist for 5 years each!
+
+-   Does the data have any seasonal pattern?
+
+    ```{r}
+
+    aus_livestock |>
+      filter(State== "Victoria", Animal== "Pigs") |>
+      filter_index("1972-07" ~"2018-12") |>
+      gg_season()+
+      labs(title = "Checking for any sesoanlity",
+           subtitle = "The data does not suggest any seasonal pattern!")
+
+    ```
+
+```{r}
+
+aus_livestock |>
+  filter(State== "Victoria", Animal== "Pigs") |>
+  filter_index("1972-07" ~"2018-12") |>
+  gg_subseries()+
+  labs(title = "Checking for any sesoanlity",
+       subtitle = "The data does not suggest any seasonal pattern!")
+
+
+```
+
+-   Seasonality is not strong!
+
+```{r}
+
+aus_livestock |>
+  filter(State== "Victoria", Animal== "Pigs") |>
+  filter_index("1972-07" ~"2018-12") |>
+  ACF(Count, lag_max = 250) |>
+  autoplot()+
+  theme(axis.text = element_text(size=6))
+
+
+```
+
+-   High auto-correlation but not much seasonality!
+
+-   The correlation jumps at period = 12, 24...
+
+-   We see the cylical pattern but the periodicity is not consistent.
+
+    -   The correlation reverses at the 60 month-mark, which suggests that the trend is shifting.
+
+    -   It continues to persis in the negatie direction until 114, which suggest that as time-periods inc the volume of pigs being slaughtered goes down.
+
+    -   From 114 onwards the correlation changes dirction and starts to become less negative, although until the period 219 it is outside the significance line. This suggests that the autocrelation is strong albet it less negative. Thsi means as t increases the volume tends to go down.
+
+#### 11. Google
+
+```{r}
+gafa_stock |>
+  filter(Symbol == "GOOG", year(Date) >= 2018)
+```
+
+```{r}
+
+dgoog <- gafa_stock |>
+  filter(Symbol == "GOOG", year(Date) >= 2018) |>
+  mutate(trading_day = row_number()) |>
+  update_tsibble(index = trading_day, regular = TRUE) |>
+  mutate(diff = difference(Close))
+```
+
+```{r}
+dgoog
+```
+
+Plot the difference:
+
+```{r}
+
+dgoog |> autoplot(diff)
+```
+
+ACF on diffL:
+
+```{r}
+
+dgoog |> ACF(diff) |> autoplot()
+
+```
+
+Differencing has turned the data into a white noise.
+
+Was the close data any different?
+
+```{r}
+
+dgoog |> autoplot(Close)
+
+```
+
+Is this diferent from the original?
+
+```{r}
+gafa_stock |>
+  filter(Symbol == "GOOG", year(Date) >= 2018) |>
+  autoplot(Close)
+
+```
+
+No difference between the original and the data with difference!
+
+OK so let's check for auto-correlation in the Google data
+
+```{r}
+
+gafa_stock |>
+  filter(Symbol == "GOOG", year(Date) >= 2018) |>
+  ACF(Close) |> autoplot()
+
+
+```
+
+Interesting!
+
+The original data had a clear autocorelation structure, but when we difference the time-seriees by taking one-day lag on closing data, the time-series becomes white-noise!

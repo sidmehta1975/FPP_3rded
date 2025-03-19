@@ -66,57 +66,6 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="chapter-2-time-series-graphics-18th-march-2025">Chapter 2 Time-Series Graphics, 18th march 2025</h2>
 <section id="load-libraries" class="level3">
 <h3 class="anchored" data-anchor-id="load-libraries">Load libraries</h3>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Registered S3 method overwritten by 'tsibble':
-  method               from 
-  as_tibble.grouped_df dplyr</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ──────────────────────────────────────────── fpp3 1.0.1 ──</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>✔ tibble      3.2.1     ✔ tsibble     1.1.6
-✔ dplyr       1.1.4     ✔ tsibbledata 0.4.1
-✔ tidyr       1.3.1     ✔ feasts      0.4.1
-✔ lubridate   1.9.4     ✔ fable       0.4.1
-✔ ggplot2     3.5.1     </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Conflicts ───────────────────────────────────────────────── fpp3_conflicts ──
-✖ lubridate::date()    masks base::date()
-✖ dplyr::filter()      masks stats::filter()
-✖ tsibble::intersect() masks base::intersect()
-✖ tsibble::interval()  masks lubridate::interval()
-✖ dplyr::lag()         masks stats::lag()
-✖ tsibble::setdiff()   masks base::setdiff()
-✖ tsibble::union()     masks base::union()</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Registered S3 method overwritten by 'quantmod':
-  method            from
-  as.zoo.data.frame zoo </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ────────────────────────────────────────────── fpp2 2.5 ──</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>✔ forecast  8.23.0     ✔ expsmooth 2.3   
-✔ fma       2.5        </code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'fpp2'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:fpp3':
-
-    insurance</code></pre>
-</div>
-</div>
 </section>
 <section id="chapter-2.2" class="level3">
 <h3 class="anchored" data-anchor-id="chapter-2.2">Chapter 2.2</h3>
@@ -196,7 +145,7 @@ Attaching package: 'fpp2'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -271,7 +220,7 @@ Attaching package: 'fpp2'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -284,7 +233,7 @@ Attaching package: 'fpp2'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -298,7 +247,7 @@ Attaching package: 'fpp2'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -312,7 +261,7 @@ Attaching package: 'fpp2'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -323,8 +272,8 @@ Attaching package: 'fpp2'</code></pre>
 </ul>
 </section>
 </section>
-<section id="chapter-2.5" class="level3">
-<h3 class="anchored" data-anchor-id="chapter-2.5">Chapter 2.5</h3>
+<section id="chapter-2.5-seasonality" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-2.5-seasonality">Chapter 2.5: Seasonality</h3>
 <section id="turning-data-into-a-tsibble" class="level4">
 <h4 class="anchored" data-anchor-id="turning-data-into-a-tsibble">Turning data into a tsibble</h4>
 <div class="cell">
@@ -357,7 +306,7 @@ Attaching package: 'fpp2'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -394,7 +343,7 @@ Attaching package: 'fpp2'</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -432,7 +381,469 @@ Attaching package: 'fpp2'</code></pre>
 </div>
 </div>
 </div>
-<p>Continue from Chapter 2.7 Lag Plots</p>
+</section>
+</section>
+<section id="chapter-2.7-lags" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-2.7-lags">Chapter 2.7: Lags</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li><p>Dots indicate the quarter on the vertical axis.</p></li>
+<li><p>We are plotting yt vs yt-k, k=1..9</p></li>
+<li><p>So for the lag-1 facet, we have yellow on the extreme left suggesting that’s a Q4 value vs a Q3 value on the x-axis</p></li>
+<li><p>We also notice that lag-4 and lag-8 line up against a line. This suggests the seasonal nature of the data. Clear indication of quarterly seasonality.</p></li>
+</ul>
+</section>
+<section id="chapter-2.8-autocorelation" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-2.8-autocorelation">Chapter 2.8: Autocorelation</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 9 x 2 [1Q]
+       lag      acf
+  &lt;cf_lag&gt;    &lt;dbl&gt;
+1       1Q -0.0530 
+2       2Q -0.758  
+3       3Q -0.0262 
+4       4Q  0.802  
+5       5Q -0.0775 
+6       6Q -0.657  
+7       7Q  0.00119
+8       8Q  0.707  
+9       9Q -0.0888 </code></pre>
+</div>
+</div>
+<p>Theory:</p>
+<ul>
+<li><p>autocorelation: correlation between value of the series that are apart by k periods.</p></li>
+<li><p>r1 = correation between value that are distanced by k=1 time period</p></li>
+<li><p>In general rk = numerator/denomintaor</p>
+<ul>
+<li><p>numerator = sum of product terms such that product is of the form (y_t - y_bar)(y_t-k -y_bar)</p>
+<ul>
+<li><p>the terms summed over the entire time-series T</p></li>
+<li><p>the starting point for the summation is t=k</p></li>
+<li><p>so if the time-series has 10 terms ie T=10</p></li>
+<li><p>we will sum the product of the form in the first bullet for all ks from 2..10</p></li>
+<li><p>so the numerator will have (10-2)+1= product terms that will be summed</p></li>
+</ul></li>
+<li><p>denominator = variance of the time series ie sum t=1..T, terms of the form (y_t - y_bar)^2</p></li>
+</ul></li>
+</ul>
+<section id="correlogram" class="level4">
+<h4 class="anchored" data-anchor-id="correlogram">Correlogram</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li><p>autocorrelations are high and positive when lags are multiples of 4 quarters.</p>
+<ul>
+<li>This suggests that there is strong seasonal pattern on a quarterly</li>
+</ul></li>
+<li><p>autocorelation is high and negative for lags that are at periods 2,6,10,14…</p>
+<ul>
+<li>This suggests that values are at trough and peaks at these intervals</li>
+</ul></li>
+<li><p>The blue line gives the significnat level for correlations</p></li>
+</ul>
+</section>
+<section id="trend-seasonality" class="level4">
+<h4 class="anchored" data-anchor-id="trend-seasonality">Trend &amp; Seasonality</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li><p>Since the lag-1 correlation is high, the data has strong trend.</p></li>
+<li><p>We also notice the highest spike at a 12, 24, 26..time interval which suggests stronong correlation with yearly values which is essentially the trend!</p></li>
+<li><p>When the data has only seasonality, the lag-1 will not be this strong.</p>
+<ul>
+<li>the lag at the seasonal period will have the strongest correlation.</li>
+</ul></li>
+<li><p>For data that has both trend and seasoanlity, we will likely get charts like th one above.</p></li>
+</ul>
+</section>
+<section id="white-noise" class="level4">
+<h4 class="anchored" data-anchor-id="white-noise">White-noise</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li>The significant bands are at +/- 1.96/sqrt(T) distance from the mean. Thsi gives the 95% confidence-interval for the distribution.</li>
+</ul>
+</section>
+</section>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises:</h3>
+<section id="bricks" class="level4">
+<h4 class="anchored" data-anchor-id="bricks">1.?Bricks</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 218 x 7 [1Q]
+   Quarter  Beer Tobacco Bricks Cement Electricity   Gas
+     &lt;qtr&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 1956 Q1   284    5225    189    465        3923     5
+ 2 1956 Q2   213    5178    204    532        4436     6
+ 3 1956 Q3   227    5297    208    561        4806     7
+ 4 1956 Q4   308    5681    197    570        4418     6
+ 5 1957 Q1   262    5577    187    529        4339     5
+ 6 1957 Q2   228    5651    214    604        4811     7
+ 7 1957 Q3   236    5317    227    603        5259     7
+ 8 1957 Q4   320    6152    222    582        4735     6
+ 9 1958 Q1   272    5758    199    554        4608     5
+10 1958 Q2   233    5641    229    620        5196     7
+# ℹ 208 more rows</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Time interval for the series is quarterly</p></li>
+<li><p>autoplot for the Bricks series</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Adding labels for the axis and a title</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="gafa-stock" class="level4">
+<h4 class="anchored" data-anchor-id="gafa-stock">2. Gafa-stock:</h4>
+<p>Find the days that correspond to the highest price for each of the stocks in the dataset</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 5,032 x 8 [!]
+# Key:       Symbol [4]
+   Symbol Date        Open  High   Low Close Adj_Close    Volume
+   &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 AAPL   2014-01-02  79.4  79.6  78.9  79.0      67.0  58671200
+ 2 AAPL   2014-01-03  79.0  79.1  77.2  77.3      65.5  98116900
+ 3 AAPL   2014-01-06  76.8  78.1  76.2  77.7      65.9 103152700
+ 4 AAPL   2014-01-07  77.8  78.0  76.8  77.1      65.4  79302300
+ 5 AAPL   2014-01-08  77.0  77.9  77.0  77.6      65.8  64632400
+ 6 AAPL   2014-01-09  78.1  78.1  76.5  76.6      65.0  69787200
+ 7 AAPL   2014-01-10  77.1  77.3  75.9  76.1      64.5  76244000
+ 8 AAPL   2014-01-13  75.7  77.5  75.7  76.5      64.9  94623200
+ 9 AAPL   2014-01-14  76.9  78.1  76.8  78.1      66.1  83140400
+10 AAPL   2014-01-15  79.1  80.0  78.8  79.6      67.5  97909700
+# ℹ 5,022 more rows</code></pre>
+</div>
+</div>
+<p>Peak closing price for each stock symbol:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 4 x 8 [!]
+# Key:       Symbol [4]
+# Groups:    Symbol [4]
+  Symbol Date        Open  High   Low Close Adj_Close   Volume
+  &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 AAPL   2018-10-03  230.  233.  230.  232.      230. 28654800
+2 AMZN   2018-09-04 2026. 2050. 2013  2040.     2040.  5721100
+3 FB     2018-07-25  216.  219.  214.  218.      218. 58954200
+4 GOOG   2018-07-26 1251  1270. 1249. 1268.     1268.  2405600</code></pre>
+</div>
+</div>
+<p><img src="images/clipboard-9133593.png" class="img-fluid"></p>
+</section>
+<section id="aus_arrivals-data-run-autoplot-gg_subseries-gg_season" class="level4">
+<h4 class="anchored" data-anchor-id="aus_arrivals-data-run-autoplot-gg_subseries-gg_season">6. “aus_arrivals” data run autoplot(), gg_subseries(), gg_season()</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 508 x 3 [1Q]
+# Key:       Origin [4]
+   Quarter Origin Arrivals
+     &lt;qtr&gt; &lt;chr&gt;     &lt;int&gt;
+ 1 1981 Q1 Japan     14763
+ 2 1981 Q2 Japan      9321
+ 3 1981 Q3 Japan     10166
+ 4 1981 Q4 Japan     19509
+ 5 1982 Q1 Japan     17117
+ 6 1982 Q2 Japan     10617
+ 7 1982 Q3 Japan     11737
+ 8 1982 Q4 Japan     20961
+ 9 1983 Q1 Japan     20671
+10 1983 Q2 Japan     12235
+# ℹ 498 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observation:</p>
+<ul>
+<li>The Japanese tourists seem to be trending dwonwards from 1996 onwards</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observation:</p>
+<ul>
+<li><p>The plot suggest the clear shift in trend across years. For All countries except Japan, the recent years have higher values</p></li>
+<li><p>The chart also clearly gives us the seasonal pattern and how this has changed over time. Example for the UK tourists the season pattern for highs in Q1 and Q4 ar more pronounced than they were back in the 1980s</p></li>
+</ul>
+</section>
+<section id="aus_livestock" class="level4">
+<h4 class="anchored" data-anchor-id="aus_livestock">10. aus_livestock</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 29,364 x 4 [1M]
+# Key:       Animal, State [54]
+       Month Animal                     State                        Count
+       &lt;mth&gt; &lt;fct&gt;                      &lt;fct&gt;                        &lt;dbl&gt;
+ 1  1976 Jul Bulls, bullocks and steers Australian Capital Territory  2300
+ 2  1976 Aug Bulls, bullocks and steers Australian Capital Territory  2100
+ 3 1976 Sept Bulls, bullocks and steers Australian Capital Territory  2100
+ 4  1976 Oct Bulls, bullocks and steers Australian Capital Territory  1900
+ 5  1976 Nov Bulls, bullocks and steers Australian Capital Territory  2100
+ 6  1976 Dec Bulls, bullocks and steers Australian Capital Territory  1800
+ 7  1977 Jan Bulls, bullocks and steers Australian Capital Territory  1800
+ 8  1977 Feb Bulls, bullocks and steers Australian Capital Territory  1900
+ 9  1977 Mar Bulls, bullocks and steers Australian Capital Territory  2700
+10  1977 Apr Bulls, bullocks and steers Australian Capital Territory  2300
+# ℹ 29,354 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  Animal                         n
+  &lt;fct&gt;                      &lt;int&gt;
+1 Calves                      4464
+2 Cattle (excl. calves)       4464
+3 Pigs                        4464
+4 Sheep                       4464
+5 Bulls, bullocks and steers  4056
+6 Lambs                       3906
+7 Cows and heifers            3546</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+  State                            n
+  &lt;fct&gt;                        &lt;int&gt;
+1 New South Wales               3810
+2 Queensland                    3810
+3 South Australia               3810
+4 Tasmania                      3810
+5 Victoria                      3810
+6 Western Australia             3810
+7 Australian Capital Territory  3300
+8 Northern Territory            3204</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Observations:</p>
+<ul>
+<li><p>The data appears to have cycles. Between Jan 1990 and Jan 2010, for the twenty-year period we see a trend that grows for 10 years and then falls for the next 10 years.</p></li>
+<li><p>Though the pattern did not quite repeat fro the period 1980-1990, in which case the upward and dwonward trend persist for 5 years each!</p></li>
+<li><p>Does the data have any seasonal pattern?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div></li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Seasonality is not strong!</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>High auto-correlation but not much seasonality!</p></li>
+<li><p>The correlation jumps at period = 12, 24…</p></li>
+<li><p>We see the cylical pattern but the periodicity is not consistent.</p>
+<ul>
+<li><p>The correlation reverses at the 60 month-mark, which suggests that the trend is shifting.</p></li>
+<li><p>It continues to persis in the negatie direction until 114, which suggest that as time-periods inc the volume of pigs being slaughtered goes down.</p></li>
+<li><p>From 114 onwards the correlation changes dirction and starts to become less negative, although until the period 219 it is outside the significance line. This suggests that the autocrelation is strong albet it less negative. Thsi means as t increases the volume tends to go down.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="google" class="level4">
+<h4 class="anchored" data-anchor-id="google">11. Google</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 251 x 8 [!]
+# Key:       Symbol [1]
+   Symbol Date        Open  High   Low Close Adj_Close  Volume
+   &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 GOOG   2018-01-02 1048. 1067. 1045. 1065      1065  1237600
+ 2 GOOG   2018-01-03 1064. 1086. 1063. 1082.     1082. 1430200
+ 3 GOOG   2018-01-04 1088  1094. 1084. 1086.     1086. 1004600
+ 4 GOOG   2018-01-05 1094  1104. 1092  1102.     1102. 1279100
+ 5 GOOG   2018-01-08 1102. 1111. 1102. 1107.     1107. 1047600
+ 6 GOOG   2018-01-09 1109. 1111. 1101. 1106.     1106.  902500
+ 7 GOOG   2018-01-10 1097. 1105. 1096. 1103.     1103. 1042800
+ 8 GOOG   2018-01-11 1106. 1107. 1100. 1106.     1106.  978300
+ 9 GOOG   2018-01-12 1102. 1124. 1101. 1122.     1122. 1720500
+10 GOOG   2018-01-16 1133. 1140. 1118. 1122.     1122. 1575300
+# ℹ 241 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tsibble: 251 x 10 [1]
+# Key:       Symbol [1]
+   Symbol Date        Open  High   Low Close Adj_Close Volume trading_day   diff
+   &lt;chr&gt;  &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;       &lt;int&gt;  &lt;dbl&gt;
+ 1 GOOG   2018-01-02 1048. 1067. 1045. 1065      1065  1.24e6           1 NA    
+ 2 GOOG   2018-01-03 1064. 1086. 1063. 1082.     1082. 1.43e6           2 17.5  
+ 3 GOOG   2018-01-04 1088  1094. 1084. 1086.     1086. 1.00e6           3  3.92 
+ 4 GOOG   2018-01-05 1094  1104. 1092  1102.     1102. 1.28e6           4 15.8  
+ 5 GOOG   2018-01-08 1102. 1111. 1102. 1107.     1107. 1.05e6           5  4.71 
+ 6 GOOG   2018-01-09 1109. 1111. 1101. 1106.     1106. 9.02e5           6 -0.680
+ 7 GOOG   2018-01-10 1097. 1105. 1096. 1103.     1103. 1.04e6           7 -3.65 
+ 8 GOOG   2018-01-11 1106. 1107. 1100. 1106.     1106. 9.78e5           8  2.91 
+ 9 GOOG   2018-01-12 1102. 1124. 1101. 1122.     1122. 1.72e6           9 16.7  
+10 GOOG   2018-01-16 1133. 1140. 1118. 1122.     1122. 1.58e6          10 -0.5  
+# ℹ 241 more rows</code></pre>
+</div>
+</div>
+<p>Plot the difference:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>ACF on diffL:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Differencing has turned the data into a white noise.</p>
+<p>Was the close data any different?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Is this diferent from the original?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>No difference between the original and the data with difference!</p>
+<p>OK so let’s check for auto-correlation in the Google data</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Chapter_2_TS_Graphics_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Interesting!</p>
+<p>The original data had a clear autocorelation structure, but when we difference the time-seriees by taking one-day lag on closing data, the time-series becomes white-noise!</p>
 </section>
 </section>
 </section>
