@@ -1,0 +1,123 @@
+---
+title: "Chapter_3_TS-decomposition"
+format: 
+  html:
+    code-fold: true
+    toc: true
+    toc-location: left
+execute:
+  warning: false
+editor: visual
+---
+
+## STL decomposition. 23 March 2025.
+
+```{r}
+#| echo: true
+
+library(fpp2)
+library(fpp3)
+```
+
+### Data: US retail employment
+
+```{r}
+
+us_employment  
+```
+
+### Example 3.2
+
+```{r}
+
+us_retail_employment <- us_employment |>
+  filter(Title == "Retail Trade") |>
+  filter(year(Month)>=1990) |>
+  select(-Series_ID)
+
+us_retail_employment
+
+```
+
+```{r}
+autoplot(us_retail_employment, Employed)+
+  labs(y="Persons (thousands)",
+       title = "Increasing trend of employment in the US retail-sector")
+```
+
+#### STL decomposition
+
+```{r}
+dcmp <- us_retail_employment |>
+  model(stl = STL(Employed))
+
+dcmp
+```
+
+```{r}
+components(dcmp)
+```
+
+This object is called a dable, a decomposition-table, which provides details about the following:
+
+-   model
+
+-   time-period for which the data was recorded, in this case "Month" (yearmonth)
+
+-   the actual value for the data "Employed"
+
+-   decomposed parts = trend, seasonality, remainder, seasonally_adjusted (Employed- season_year)
+
+#### Plotting trends from the dable
+
+```{r}
+
+components(dcmp) |>
+  as_tsibble() |>
+  autoplot(Employed, colour="gray")+
+  geom_line(aes(y=trend), colour="orange")+
+  labs(
+    y="Persons (thousands)",
+    title = "Trend for the US retail employment 1990-2020"
+  )
+
+```
+
+#### Plot all compononents
+
+```{r}
+components(dcmp) |> autoplot()
+```
+
+## STL function: Section 3.6
+
+```{r}
+us_retail_employment |>
+  model(
+    STL(Employed ~ trend(window=7)+
+          season(window = "periodic"),
+        robust = TRUE)
+  ) |>
+  components() |>
+  autoplot()
+```
+
+Observations:
+
+-   The STL model had two parameters:
+
+    -   trend window, which basically accounts for the number of consecutive observations we should use to calculate the trend. The higher the trend-window the smoother the curve.
+
+    -   season-window, gives the number of years that shaould be taken to calculate the seasonal-values. When this is set to infinite, which implies that the seasonal-trend remains constant through the data-period, we use the term "periodic".
+
+    -   Defualt settings in the package:
+
+        -   default for season = 11
+
+        -   defalut for trend varies with the seoasnality.
+
+            -   for monthly data, trend default = 21
+
+    -   Read the package for more details
+
+## Exercises:
