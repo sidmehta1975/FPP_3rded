@@ -120,4 +120,64 @@ Observations:
 
     -   Read the package for more details
 
-## Exercises:
+## Exercises 3.7:
+
+#### 1. GDP per capita
+
+-   Plot GDP per capita. Which country has the highest GDP per capita and how has this changed overtime?
+
+Let's look at the data:
+
+```{r}
+global_economy
+```
+
+Observations:
+
+-   The time-series has 9 coulmns and 15,150 rows
+
+-   There is unique data for each country and we have 263 countries in the dataset
+
+-   Therefore we have '{r} 15150/263' years worth of data for each country
+
+Calculate GDP per capita and plot the time-series:
+
+```{r}
+
+global_economy |>
+  mutate(GDP_per_capita = GDP/Population) |>
+  summary()
+```
+
+The highest GDP per capita is 185,152.
+
+Let's see which country this belongs to?
+
+```{r}
+
+global_economy |>
+  mutate(GDP_per_capita = GDP/Population) |>
+  filter(GDP_per_capita == max(GDP_per_capita, na.rm = TRUE))
+
+
+```
+
+Let's plot all countries:
+
+```{r}
+
+global_economy |>
+  mutate(GDP_per_capita = GDP/Population) |>
+  mutate(Highlight = if_else(Country == "Monaco", "Yes", "No")) |>
+  filter(!is.na(GDP_per_capita)) |>
+  ggplot(aes(Year, GDP_per_capita, 
+             group= Country, colour= Highlight))+
+  geom_line()+
+  scale_y_continuous("GDP per capita",
+                     breaks = seq(0,200000,50000),
+                     labels = scales::label_comma())+
+  geom_label(aes(x= 1990, y=105000),label= "Monaco")+
+  labs(title = "Monaco has the highest GDP per capita in 2017",
+       colour="")+
+  theme(legend.position = "none")
+```
